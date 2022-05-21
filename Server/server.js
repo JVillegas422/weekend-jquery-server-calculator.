@@ -1,30 +1,31 @@
 console.log('In the server!');
 
 const express = require('express');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const app = express();
+const PORT = 5000;
 
 // This must be added before GET & POST routes.
-// app.use(bodyParser.urlencoded({extended:true}))
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json());
 
 // Serve up static files (HTML, CSS, Client JS)
-app.use(express.static());
+app.use(express.static('server/public'));
 
-let calcAnswer = [];
+let showAnswer = [];
 
 app.get('/calculate', (req, res) => {
     console.log('Calculate is working.');
-    res.send(calcAnswer);
+    res.send(showAnswer);
 })
 
 app.post('/calculate', (req, res) => {
     console.log('Made it to post /calculate.');
-    calcAnswer.push(req.body)
-    console.log(calcAnswer)
+    showAnswer.push(req.body)
+    console.log(showAnswer)
       res.sendStatus(201);
 })
 
-const PORT = 5000;
 app.listen(PORT, () => {
     console.log ('Server is running on port', PORT)
   });
