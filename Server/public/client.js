@@ -82,7 +82,6 @@ function renderCalculate(calculates) {
         <li> ${calc.firstNum} ${calc.mathType} ${calc.secondNum} = ${calc.mathAnswer}</li>
         `);
     }
-        $('#current-answer').empty();
     }
 
 // Created button to clear input values
