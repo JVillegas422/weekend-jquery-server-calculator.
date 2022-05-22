@@ -10,7 +10,6 @@ function onReady() {
     $('.math-symbol').on('click', getMathType);
     $('#clear-result').on('click', clearResults);
     fetchCalculate();
-    // showResults();
 }
 
 function getMathType(evt) {
