@@ -8,7 +8,9 @@ function onReady() {
     console.log("jquery is loaded!");
     $('#get-result').on('click', calcAnswer);
     $('.math-symbol').on('click', getMathType);
+    $('#clear-result').on('click', clearResults);
     fetchCalculate();
+    // showResults();
 }
 
 function getMathType(evt) {
@@ -66,7 +68,7 @@ function fetchCalculate() {
       `);
     });
     
-    console.log('after the ajax command');1
+    console.log('after the ajax command');
 }
 
 function renderCalculate(calculates) {
@@ -74,10 +76,22 @@ function renderCalculate(calculates) {
     $('#result-list').empty();
     
     for (let calc of calculates) {
-      console.log('this is working', calc.firstNum)
+      console.log('calculate is working', calc.firstNum)
       $('#result-list').append(
         `
-         <li> ${calc.firstNum} ${calc.mathType} ${calc.secondNum} = ${calc.mathAnswer}</li>
-      `);
+        <h2>${calc.mathAnswer}</h2>
+        <li> ${calc.firstNum} ${calc.mathType} ${calc.secondNum} = ${calc.mathAnswer}</li>
+        `);
     }
+        $('#current-answer').empty();
     }
+
+// Created button to clear input values
+function clearResults(evt) {
+    evt.preventDefault();
+    let calculate = {
+        firstNum: $('#value-one').val(''),
+        secondNum: $('#value-two').val(''),
+    };
+    console.log('Clear first & second numbers');
+}
