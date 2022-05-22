@@ -21,10 +21,31 @@ app.get('/calculate', (req, res) => {
 
 app.post('/calculate', (req, res) => {
     console.log('Made it to post /calculate.');
+    mathCalculations(req.body);
     showAnswer.push(req.body)
     console.log(showAnswer)
+    // status code created request and fulfilled what it asked
       res.sendStatus(201);
 })
+
+function mathCalculations(object) {
+  if (object.mathType === '+') {
+    // Add number to convert only on addition 
+    object.mathAnswer = Number(object.firstNum) + Number(object.secondNum);
+  } 
+  else if (object.mathType === '-') {
+    object.mathAnswer = object.firstNum - object.secondNum;
+  }
+  else if (object.mathType === '*') {
+    object.mathAnswer = object.firstNum * object.secondNum;
+  }
+  else if (object.mathType === '/') {
+    object.mathAnswer = object.firstNum / object.secondMNum;
+  }
+  else {
+    return false;
+  }
+}
 
 app.listen(PORT, () => {
     console.log ('Server is running on port', PORT)

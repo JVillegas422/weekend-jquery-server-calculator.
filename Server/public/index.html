@@ -12,16 +12,17 @@
 <body>
     <h1>Server Side Calculator</h1>
     <form>
-        <input id="first-input" type="number" />
-        <button id="add-btn">+</button>
-        <button id="subtract-btn">-</button>
-        <button id="multiply-btn">*</button>
-        <button id="division-btn">/</button>
-        <input id="second-input" type="number" />
-        <button id="get-answer">C</button>
+        <input id="value-one" type="number" />
+        <button id="add-btn" class="math-symbol" data-sign="+">+</button>
+        <button id="subtract-btn" class="math-symbol" data-sign="-">-</button>
+        <button id="multiply-btn" class="math-symbol" data-sign="*">*</button>
+        <button id="division-btn" class="math-symbol" data-sign="/">/</button>
+        <input id="value-two" type="number" />
+        <button id="get-result">Equals</button>
     </form>
+    <h2 id="currentAnswer"></h2>
     <div>
-        <ul id="answer-list"></ul>
+        <ul id="result-list"></ul>
     </div>
 </body>
 </html>

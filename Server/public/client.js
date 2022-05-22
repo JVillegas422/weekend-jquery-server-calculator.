@@ -2,17 +2,28 @@ console.log('In JS');
 
 $(document).ready(onReady);
 
+let mathType = '';
+
 function onReady() {
     console.log("jquery is loaded!");
-    $('#answer-list').on('click', calcAnswer);
+    $('#get-result').on('click', calcAnswer);
+    $('.math-symbol').on('click', getMathType);
+    fetchCalculate();
+}
+
+function getMathType(evt) {
+    evt.preventDefault();
+    mathType = $(this).text()
+    console.log(mathType)
 }
 
 function calcAnswer(evt) {
-    evt.preventDefault;
+    evt.preventDefault();
     let calculate = {
-        firstNum: $('#first-input').val(),
-        secondNum: $('#second-input').val(),
-        getAnswer: $('#get-answer').val()
+        firstNum: $('#value-one').val(),
+        secondNum: $('#value-two').val(),
+        mathAnswer: 0,
+        mathType: mathType
     };
     console.log('Calculate first & second numbers');
 
@@ -25,7 +36,7 @@ data: calculate
     'POST request works',
     response
     );
-    fetch();
+    // if our then did not work
   }).catch((error) => {
       alert('Sorry, error!');
       console.log('oops, error!', error);
@@ -36,17 +47,17 @@ data: calculate
 function fetchCalculate() {
     $.ajax({
         url: '/calculate',
-        method: 'GET'
+        metho1d: 'GET'
     }).then((response) => {
       console.log('GET request, works!', response);
       
       
       renderCalculate(response);
     }).catch((err) => {
-      // This function is called for any errors
+      //This function is called for any errors
       console.log('GET /calculate failed', err);
     
-      // alert('oh no...')
+      alert('oh no...')
     
       $('body').html(`
           <h1>
@@ -55,19 +66,18 @@ function fetchCalculate() {
       `);
     });
     
-    console.log('after the ajax command');
-    $('#answer-list').text('Loading.....');
+    console.log('after the ajax command');1
 }
 
-// function renderCalculate(calculate) {
-//     console.log('calculate is', calculate);
-//     $('#answer-list').empty();
+function renderCalculate(calculates) {
+    console.log('calculates is', calculates);
+    $('#result-list').empty();
     
-//     for (let calculates of calculate) {
-//       console.log('this is working', calculates.firstNum)
-//       $('#answer-list').append(
-//         `
-//          <li> ${calculates.firstNum} ${calculates.secondNum}</li>
-//       `);
-//     }
-//     }
+    for (let calc of calculates) {
+      console.log('this is working', calc.firstNum)
+      $('#result-list').append(
+        `
+         <li> ${calc.firstNum} ${calc.mathType} ${calc.secondNum} = ${calc.mathAnswer}</li>
+      `);
+    }
+    }
