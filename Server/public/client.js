@@ -93,3 +93,4 @@ function clearResults(evt) {
     };
     console.log('Clear first & second numbers');
 }
+// Just a test comment
